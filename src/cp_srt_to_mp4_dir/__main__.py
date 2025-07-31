@@ -1,4 +1,4 @@
-# DS提示词：
+# DS提示词：帮我写一个python文件。
 # 有两个文件夹，一个是“待整理”，一个是“整理完成”。
 # “整理完成”里有很多个文件夹，文件夹里面有mp4文件，
 # “待整理”里也有很多个文件夹，文件夹里面有srt文件和jpg文件。
@@ -7,6 +7,7 @@
 
 import os
 import shutil
+from pathlib import Path
 
 # 步骤1: 在目标文件夹中收集所有mp4文件的映射关系 (文件名 -> 所在文件夹路径)
 def find_mp4_files(target_dir):
@@ -52,12 +53,10 @@ def find_srt_files_and_copy(source_dir, mp4_mapping):
 
 def main():
     print(f"Welcome to the cp_srt_to_mp4_dir script! ")
-    # 配置路径
-    base_dir = "D:\Project\HiPython\data\cp_srt_to_mp4_dir"  # 基础目录
-    source_dir = f"{base_dir}{os.sep}待整理" 
-    target_dir = f"{base_dir}{os.sep}整理完成"
-    print(f"配置文件夹路径为，待整理：{source_dir} ")
-    print(f"配置文件夹路径为，整理完成：{target_dir} ")
+    root_dir = Path(__file__).parent.parent.parent  #工程所在目录
+    data_dir = f"{root_dir.absolute()}{os.sep}data{os.sep}cp_srt_to_mp4_dir"  # 数据目录
+    source_dir = f"{data_dir}{os.sep}待整理" 
+    target_dir = f"{data_dir}{os.sep}整理完成"
     mp4_mapping = find_mp4_files(target_dir)  # 获取mp4文件映射
     find_srt_files_and_copy(source_dir, mp4_mapping)  # 查找并复制srt和jpg文件
     print("文件整理完成!")
