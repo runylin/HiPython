@@ -56,7 +56,7 @@ def split_pdf_based_on_excel(excel_path, pdf_path, output_folder):
 
 if __name__ == "__main__":
     # 配置路径
-    root_dir = Path(__file__).parent.parent.parent  #工程所在目录
+    root_dir = Path(__file__).parent.parent.parent  # 工程所在目录
     data_dir = f"{root_dir.absolute()}{os.sep}data{os.sep}split_pdf"  # 数据目录
     excel_file = f"{data_dir}{os.sep}testPdf100.xlsx"  # Excel文件路径
     source_pdf = f"{data_dir}{os.sep}testPdf100.pdf"  # 原始PDF文件路径
